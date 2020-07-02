@@ -19,7 +19,7 @@ using namespace std;
 
  */
 
-int majorityElement(vector<int>& nums) {
+int majorityElement1(vector<int>& nums) {
    unordered_map<int, int> m;
    int halfsize = nums.size() / 2;
 
@@ -46,6 +46,29 @@ int majorityElement(vector<int>& nums) {
    return -1;
 }
 
+//摩尔投票法，直接计算数字出现的次数
+int majorityElement(vector<int>& nums) {
+    int res = 0;
+    int count = 0;
+    for(int i : nums)
+    {
+        if(res == i)
+        {
+            count++;
+        }
+        else
+        {
+            count--;
+        }
+
+        if(count < 0)
+        {
+            res = i;
+        }
+    }
+
+    return res;
+}
 
 int main()
 {
